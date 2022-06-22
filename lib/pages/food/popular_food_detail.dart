@@ -1,19 +1,51 @@
+import 'package:delivery_app/controllers/popular_product_controller.dart';
+import 'package:delivery_app/pages/home/main_food_page.dart';
+import 'package:delivery_app/utils/app_constants.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:delivery_app/utils/dimensions.dart';
 import 'package:delivery_app/widgets/app_column.dart';
 import 'package:delivery_app/widgets/app_icon.dart';
+import 'package:delivery_app/widgets/expandable_text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/big_text.dart';
 import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<PopularProductController>().popularProductList[pageId];
+
+    // String BodyText =
+    //     'Chicken marinated in a spiced yogurt is placed in a large pot then layered with fried onions fresh coriander,'
+    //     ' then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a large pot then layered with '
+    //     'fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a '
+    //     'large pot then layered with fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a'
+    //     ' spiced yogurt is placed in a large pot then layered with fried onions fresh coriander, then par boiled spiced '
+    //     'rice.Chicken marinated in a spiced yogurt is placed in a large pot then layered with fried onions fresh coriander,'
+    //     ' then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a large pot then layered with '
+    //     'fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a '
+    //     'large pot then layered with fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a'
+    //     ' spiced yogurt is placed in a large pot then layered with fried onions fresh coriander, then par boiled spiced '
+    //     'rice.Chicken marinated in a spiced yogurt is placed in a large pot then layered with fried onions fresh coriander,'
+    //     ' then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a large pot then layered with '
+    //     'fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a '
+    //     'large pot then layered with fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a'
+    //     ' spiced yogurt is placed in a large pot then layered with fried onions fresh coriander, then par boiled spiced '
+    //     'rice.Chicken marinated in a spiced yogurt is placed in a large pot then layered with fried onions fresh coriander,'
+    //     ' then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a large pot then layered with '
+    //     'fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a spiced yogurt is placed in a '
+    //     'large pot then layered with fried onions fresh coriander, then par boiled spiced rice.Chicken marinated in a'
+    //     ' spiced yogurt is placed in a large pot then layered with fried onions fresh coriander, then par boiled spiced';
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -26,7 +58,9 @@ class PopularFoodDetail extends StatelessWidget {
                 height: DimensionsCus.popularFoodImgSize,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.cover, image: AssetImage('assets/image/food0.png'))),
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            AppConstants.BASE_URL + AppConstants.UploadURL + product.img!))),
               )),
           Positioned(
               top: DimensionsCus.height55,
@@ -35,7 +69,11 @@ class PopularFoodDetail extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(icon: Icons.arrow_back_ios),
+                  GestureDetector(
+                      onTap: () {
+                        Get.to(() => MainFoodPage());
+                      },
+                      child: AppIcon(icon: Icons.arrow_back_ios)),
                   AppIcon(icon: Icons.shopping_cart_outlined),
                 ],
               )),
@@ -55,11 +93,17 @@ class PopularFoodDetail extends StatelessWidget {
                       topLeft: Radius.circular(DimensionsCus.radius20)),
                   color: Colors.white),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                AppColum(text: 'Chinese Side'),
+                AppColum(text: product.name!),
                 SizedBox(
                   height: DimensionsCus.height20,
                 ),
-                BigText(text: 'Introduce')
+                BigText(text: 'Introduce'),
+                SizedBox(
+                  height: DimensionsCus.height20,
+                ),
+                Expanded(
+                    child: SingleChildScrollView(
+                        child: ExpandableTextWidget(text: product.description!))),
               ]),
             ),
           ),
@@ -118,7 +162,7 @@ class PopularFoodDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(DimensionsCus.radius20),
                 color: AppColors.mainColor),
             child: BigText(
-              text: '\$101.00 | Add to Cart',
+              text: '\$ ${product.price}  | Add to Cart',
               color: Colors.white,
             ),
           )

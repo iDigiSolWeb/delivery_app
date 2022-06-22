@@ -31,6 +31,7 @@ class DimensionsCus {
   static double width30 = screenHeight! / 28.13;
   static double width45 = screenHeight! / 18.76;
 
+  static double iconsize14 = screenHeight! / 52.75;
   static double iconsize24 = screenHeight! / 35.17;
   static double iconsize16 = screenHeight! / 52.75;
 
