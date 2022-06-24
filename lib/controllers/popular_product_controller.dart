@@ -1,5 +1,6 @@
 import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/data/repositories/popular_product_repo.dart';
+import 'package:delivery_app/models/cart_model.dart';
 import 'package:delivery_app/models/products_model.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,10 @@ class PopularProductController extends GetxController {
     if (inCartItems + quantity < 0) {
       Get.snackbar('Item Count', 'Cannot go below zero',
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return quantity;
+      }
       return 0;
     } else if (inCartItems + quantity > 20) {
       Get.snackbar('Item Count', 'Cannot go over 20',
@@ -80,5 +85,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
