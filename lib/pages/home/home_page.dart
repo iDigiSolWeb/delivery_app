@@ -1,3 +1,4 @@
+import 'package:delivery_app/pages/cart/cart_page.dart';
 import 'package:delivery_app/pages/home/main_food_page.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
     return [
       MainFoodPage(),
       Container(child: Center(child: const Text('Next Page'))),
-      Container(child: Center(child: const Text('Next Next Page'))),
+      CartPage(),
       Container(child: Center(child: const Text('Next Next Next Page'))),
     ];
   }
