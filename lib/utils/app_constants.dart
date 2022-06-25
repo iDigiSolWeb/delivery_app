@@ -8,4 +8,7 @@ class AppConstants {
   static const String TOKEN = 'DBToken';
 
   static const String UploadURL = '/uploads/';
+
+  static const String cartList = 'Cart-list';
+  static const String cart_history_list = 'cart-history-list';
 }

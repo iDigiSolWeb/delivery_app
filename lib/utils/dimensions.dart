@@ -42,4 +42,6 @@ class DimensionsCus {
   static double popularFoodImgSize = screenHeight! / 2.41;
 
   static double bottomHeight = screenHeight! / 7.03;
+
+  static double imageSplash = screenHeight! / 3.8;
 }

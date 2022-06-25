@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:delivery_app/routes/routes_helper.dart';
+import 'package:delivery_app/utils/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,14 +49,14 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
             child: Center(
               child: Image.asset(
                 'assets/image/logo part 1.png',
-                width: 250,
+                width: DimensionsCus.imageSplash,
               ),
             ),
           ),
           Center(
             child: Image.asset(
               'assets/image/logo part 2.png',
-              width: 250,
+              width: DimensionsCus.imageSplash,
             ),
           )
         ],

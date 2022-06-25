@@ -1,3 +1,4 @@
+import 'package:delivery_app/pages/cart/cart_history.dart';
 import 'package:delivery_app/pages/cart/cart_page.dart';
 import 'package:delivery_app/pages/home/main_food_page.dart';
 import 'package:delivery_app/utils/colors.dart';
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     MainFoodPage(),
     Container(child: Center(child: const Text('Next Page'))),
-    Container(child: Center(child: const Text('Next Next Page'))),
+    CartHistory(),
     Container(child: Center(child: const Text('Next Next Next Page'))),
   ];
 
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
     return [
       MainFoodPage(),
       Container(child: Center(child: const Text('Next Page'))),
-      CartPage(),
+      CartHistory(),
       Container(child: Center(child: const Text('Next Next Next Page'))),
     ];
   }
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.cart),
-        title: ("Cart"),
+        title: ("Cart History"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: AppColors.yellowColor,
       ),
