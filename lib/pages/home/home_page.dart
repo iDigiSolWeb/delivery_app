@@ -1,3 +1,5 @@
+import 'package:delivery_app/pages/account/account_page.dart';
+import 'package:delivery_app/pages/auth/sign_up_page.dart';
 import 'package:delivery_app/pages/cart/cart_history.dart';
 import 'package:delivery_app/pages/cart/cart_page.dart';
 import 'package:delivery_app/pages/home/main_food_page.dart';
@@ -44,9 +46,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      Container(child: Center(child: const Text('Next Page'))),
+      SignUpPage(),
       CartHistory(),
-      Container(child: Center(child: const Text('Next Next Next Page'))),
+      AccountPage(),
     ];
   }
 

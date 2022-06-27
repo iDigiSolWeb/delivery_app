@@ -1,3 +1,5 @@
+import 'package:delivery_app/pages/account/account_page.dart';
+import 'package:delivery_app/pages/auth/sign_up_page.dart';
 import 'package:delivery_app/pages/food/popular_food_detail.dart';
 import 'package:delivery_app/pages/food/recommended_food_detail.dart';
 import 'package:delivery_app/pages/home/home_page.dart';
@@ -12,19 +14,25 @@ class RouteHelper {
   static const String recommendedFood = '/recommended-Food';
   static const String cartpage = '/cart-page';
   static const String splashScreen = '/splash-screen';
+  static const String accountPage = '/account-page';
+  static const String signup = '/sign-up-page';
 
   ///use if passing parameters
   static String getInitial() => '$initial';
+  static String getSignUpPage() => '$signup';
   static String getPopularFood(int pageId, String page) => '$popularFood?pageId=$pageId&page=$page';
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage() => '$cartpage';
   static String getSplashScreen() => '$splashScreen';
+  static String getAccountPage() => '$accountPage';
 
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => HomePage()),
+    GetPage(name: signup, page: () => SignUpPage()),
     GetPage(name: cartpage, page: () => CartPage(), transition: Transition.fadeIn),
     GetPage(name: splashScreen, page: () => SplashScreen()),
+    GetPage(name: accountPage, page: () => AccountPage()),
     GetPage(
         name: popularFood,
         page: () {
