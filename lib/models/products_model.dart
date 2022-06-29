@@ -30,7 +30,7 @@ class Product {
     data['type_id'] = this._typeId;
     data['offset'] = this._offset;
     if (this._products != null) {
-      data['products'] = this._products!.map((v) => v.toJson()).toList();
+      data['products'] = this._products.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -1,5 +1,8 @@
 import 'dart:typed_data';
 
+import 'package:delivery_app/controllers/auth_controller.dart';
+import 'package:delivery_app/controllers/cart_controller.dart';
+import 'package:delivery_app/routes/routes_helper.dart';
 import 'package:delivery_app/utils/colors.dart';
 import 'package:delivery_app/utils/dimensions.dart';
 import 'package:delivery_app/widgets/account_widget.dart';
@@ -7,6 +10,7 @@ import 'package:delivery_app/widgets/app_icon.dart';
 import 'package:delivery_app/widgets/big_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -128,6 +132,32 @@ class AccountPage extends StatelessWidget {
                       bigText: BigText(
                         text: "messages",
                         color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      height: DimensionsCus.height20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        }
+                      },
+                      child: AccountWidget(
+                        appIcon: AppIcon(
+                          icon: Icons.logout,
+                          backgroundcolour: Colors.redAccent,
+                          iconColor: Colors.white,
+                          iconSize: DimensionsCus.height10 * 5 / 2,
+                          size: DimensionsCus.height10 * 5,
+                        ),
+                        bigText: BigText(
+                          text: "Logout",
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     SizedBox(

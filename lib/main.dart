@@ -1,6 +1,7 @@
 import 'package:delivery_app/controllers/cart_controller.dart';
 import 'package:delivery_app/controllers/popular_product_controller.dart';
 import 'package:delivery_app/controllers/recommended_product_controller.dart';
+import 'package:delivery_app/pages/auth/sign_in_page.dart';
 import 'package:delivery_app/pages/auth/sign_up_page.dart';
 import 'package:delivery_app/pages/cart/cart_page.dart';
 import 'package:delivery_app/pages/food/popular_food_detail.dart';
@@ -17,7 +18,7 @@ import 'helper/dependencies.dart' as dep;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -35,9 +36,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: SignUpPage(),
-          //initialRoute: RouteHelper.getSplashScreen(),
-          //getPages: RouteHelper.routes,
+          initialRoute: RouteHelper.getSplashScreen(),
+          getPages: RouteHelper.routes,
         );
       });
     });

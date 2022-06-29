@@ -1,4 +1,5 @@
 import 'package:delivery_app/utils/app_constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ApiClient extends GetConnect implements GetxService {
@@ -23,5 +24,23 @@ class ApiClient extends GetConnect implements GetxService {
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());
     }
+  }
+
+  Future<Response> postData(String uri, dynamic body) async {
+    print(body.toString());
+    try {
+      Response response = await post(uri, body, headers: _mainHeaders);
+      return response;
+    } catch (e) {
+      print(e.toString());
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  void updateHeader(String token) {
+    _mainHeaders = {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token',
+    };
   }
 }

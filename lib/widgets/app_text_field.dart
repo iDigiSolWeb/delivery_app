@@ -8,11 +8,13 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final IconData iconData;
+  final bool obscuretext;
   const AppTextField(
       {Key? key,
       required this.textEditingController,
       required this.hintText,
-      required this.iconData})
+      required this.iconData,
+      this.obscuretext = false})
       : super(key: key);
 
   @override
@@ -31,20 +33,21 @@ class AppTextField extends StatelessWidget {
             )
           ]),
       child: TextField(
+        obscureText: obscuretext,
         controller: textEditingController,
         decoration: InputDecoration(
           hintText: hintText,
           prefixIcon: Icon(iconData, color: AppColors.yellowColor),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(DimensionsCus.radius30),
+            borderRadius: BorderRadius.circular(DimensionsCus.radius15),
             borderSide: BorderSide(width: 1.0, color: Colors.teal),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(DimensionsCus.radius30),
+            borderRadius: BorderRadius.circular(DimensionsCus.radius15),
             borderSide: BorderSide(width: 1.0, color: Colors.white),
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(DimensionsCus.radius30),
+            borderRadius: BorderRadius.circular(DimensionsCus.radius15),
             borderSide: BorderSide(width: 1.0, color: Colors.white),
           ),
         ),
