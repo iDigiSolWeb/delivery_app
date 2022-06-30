@@ -21,10 +21,12 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
+    var phoneController = TextEditingController();
 
     void _login(AuthController authController) {
       String password = passwordController.text.trim();
       String email = emailController.text.trim();
+      String phone = phoneController.text.trim();
 
       if (password.isEmpty) {
         showCustomSnackbar('Type in your password!', title: 'Password');
@@ -36,7 +38,7 @@ class SignInPage extends StatelessWidget {
         showCustomSnackbar('Your password needs to be at least 6 characters long!',
             title: 'Password length');
       } else {
-        authController.login(email, password).then((status) {
+        authController.login(email, password, phone).then((status) {
           if (status.isSuccess) {
             Get.toNamed(RouteHelper.getCartPage());
           } else {
@@ -92,6 +94,13 @@ class SignInPage extends StatelessWidget {
                           textEditingController: emailController,
                           hintText: 'Email',
                           iconData: Icons.email),
+                      SizedBox(
+                        height: DimensionsCus.height20,
+                      ),
+                      AppTextField(
+                          textEditingController: phoneController,
+                          hintText: 'Phone',
+                          iconData: Icons.phone),
                       SizedBox(
                         height: DimensionsCus.height20,
                       ),
