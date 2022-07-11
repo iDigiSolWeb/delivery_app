@@ -48,7 +48,8 @@ class AccountPage extends StatelessWidget {
                           icon: Icons.person_outline,
                           backgroundcolour: AppColors.mainColor,
                           iconColor: Colors.white,
-                          iconSize: DimensionsCus.height45 + DimensionsCus.height30,
+                          iconSize:
+                              DimensionsCus.height45 + DimensionsCus.height30,
                           size: DimensionsCus.height15 * 10,
                         ),
                         SizedBox(
@@ -114,17 +115,22 @@ class AccountPage extends StatelessWidget {
                                 ),
 
                                 ///address
-                                AccountWidget(
-                                  appIcon: AppIcon(
-                                    icon: Icons.location_on,
-                                    backgroundcolour: AppColors.yellowColor,
-                                    iconColor: Colors.white,
-                                    iconSize: DimensionsCus.height10 * 5 / 2,
-                                    size: DimensionsCus.height10 * 5,
-                                  ),
-                                  bigText: BigText(
-                                    text: "13 Vrede ave, bodorp,george",
-                                    color: Colors.black,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(RouteHelper.getAddAddress());
+                                  },
+                                  child: AccountWidget(
+                                    appIcon: AppIcon(
+                                      icon: Icons.location_on,
+                                      backgroundcolour: AppColors.yellowColor,
+                                      iconColor: Colors.white,
+                                      iconSize: DimensionsCus.height10 * 5 / 2,
+                                      size: DimensionsCus.height10 * 5,
+                                    ),
+                                    bigText: BigText(
+                                      text: "13 Vrede ave, bodorp,george",
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(
@@ -150,10 +156,13 @@ class AccountPage extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    if (Get.find<AuthController>().userLoggedIn()) {
-                                      Get.find<AuthController>().clearSharedData();
+                                    if (Get.find<AuthController>()
+                                        .userLoggedIn()) {
+                                      Get.find<AuthController>()
+                                          .clearSharedData();
                                       Get.find<CartController>().clear();
-                                      Get.find<CartController>().clearCartHistory();
+                                      Get.find<CartController>()
+                                          .clearCartHistory();
                                       Get.offNamed(RouteHelper.getSignInPage());
                                     }
                                   },
@@ -191,10 +200,12 @@ class AccountPage extends StatelessWidget {
                           height: DimensionsCus.height20 * 10,
                           margin: EdgeInsets.only(left: DimensionsCus.width20),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(DimensionsCus.radius20),
-                            image: DecorationImage(
+                            borderRadius:
+                                BorderRadius.circular(DimensionsCus.radius20),
+                            image: const DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage('assets/image/signintocontinue.png'),
+                              image: AssetImage(
+                                  'assets/image/signintocontinue.png'),
                             ),
                           ),
                         ),
@@ -206,10 +217,12 @@ class AccountPage extends StatelessWidget {
                               width: double.maxFinite,
                               height: DimensionsCus.height20 * 4,
                               margin: EdgeInsets.only(
-                                  left: DimensionsCus.width20, right: DimensionsCus.width20),
+                                  left: DimensionsCus.width20,
+                                  right: DimensionsCus.width20),
                               decoration: BoxDecoration(
                                 color: AppColors.mainColor,
-                                borderRadius: BorderRadius.circular(DimensionsCus.radius20),
+                                borderRadius: BorderRadius.circular(
+                                    DimensionsCus.radius20),
                               ),
                               child: Center(
                                 child: BigText(

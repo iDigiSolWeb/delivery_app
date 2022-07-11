@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiClient extends GetConnect implements GetxService {
-  late String token;
+  late String? token;
   final String appBaseUrl;
   late Map<String, String> _mainHeaders;
   late SharedPreferences sharedPreferences;
@@ -12,7 +12,7 @@ class ApiClient extends GetConnect implements GetxService {
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
     timeout = Duration(seconds: 30);
-    token = sharedPreferences.getString(AppConstants.TOKEN)! ?? '';
+    token = sharedPreferences.getString(AppConstants.TOKEN);
     _mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token',
