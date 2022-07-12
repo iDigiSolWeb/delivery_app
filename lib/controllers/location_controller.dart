@@ -16,7 +16,8 @@ class LocationController extends GetxController implements GetxService {
   late Position _pickPosition;
   Placemark _placemark = Placemark();
   Placemark _pickPlacemark = Placemark();
-
+  Placemark get placeMark => _placemark;
+  Placemark get pickPlacemark => _pickPlacemark;
   List<AddressModel> _addressList = [];
 
   List<AddressModel> get addressList => _addressList;
@@ -41,15 +42,15 @@ class LocationController extends GetxController implements GetxService {
     _mapController = mapController;
   }
 
-  updatePosition(CameraPosition cameraPosition, bool fromAddress) async {
+  updatePosition(CameraPosition position, bool fromAddress) async {
     if (_updateAddressData) {
       _loading = true;
       update();
       try {
         if (fromAddress) {
           _position = Position(
-              longitude: cameraPosition.target.longitude,
-              latitude: cameraPosition.target.latitude,
+              longitude: position.target.longitude,
+              latitude: position.target.latitude,
               timestamp: DateTime.now(),
               accuracy: 1,
               altitude: 1,
@@ -58,8 +59,8 @@ class LocationController extends GetxController implements GetxService {
               speedAccuracy: 1);
         } else {
           _pickPosition = Position(
-              longitude: cameraPosition.target.longitude,
-              latitude: cameraPosition.target.latitude,
+              longitude: position.target.longitude,
+              latitude: position.target.latitude,
               timestamp: DateTime.now(),
               accuracy: 1,
               altitude: 1,
@@ -68,9 +69,12 @@ class LocationController extends GetxController implements GetxService {
               speedAccuracy: 1);
 
           if (_changeAddress) {
-            String _address = await getAddressFromGeoCode(LatLng(
-                cameraPosition.target.latitude,
-                cameraPosition.target.longitude));
+            String _address = await getAddressFromGeoCode(
+                LatLng(position.target.latitude, position.target.longitude));
+
+            fromAddress
+                ? _placemark = Placemark(name: _address)
+                : _pickPlacemark = Placemark(name: _address);
           }
         }
       } catch (e) {
@@ -82,8 +86,10 @@ class LocationController extends GetxController implements GetxService {
   Future<String> getAddressFromGeoCode(LatLng latLng) async {
     String _address = 'Unknown Location';
     Response response = await locationRepo.getAddressfromGeocode(latLng);
+    print(response.body);
     if (response.body['status'] == 'OK') {
       _address = response.body['results'][0]['formatted_address'].toString();
+      print("ADDRESS: " + _address);
     } else {
       print('Error getting google api');
     }

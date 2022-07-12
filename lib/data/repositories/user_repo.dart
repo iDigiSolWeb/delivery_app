@@ -1,6 +1,6 @@
 import 'package:delivery_app/data/api/api_client.dart';
 import 'package:delivery_app/utils/app_constants.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:get/get.dart';
 
 class UserRepo {
   final ApiClient apiClient;
